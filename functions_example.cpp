@@ -7,6 +7,7 @@
 #include<iostream>
 #include<ctime>
 #include<iomanip>
+#include<cstdlib>
 using namespace std;
 //
 // draw an x on iostream
@@ -52,11 +53,19 @@ void draw_turkey(int center, int scale){
 
 int main(){
 
-    int num_frames = 100;
+    srand(time(0));
+
+    int num_frames = 1000;
     int t = 1;
+    
+    for(int i=0;i<25;i++)
+        cout << rand()%6 +1 << " dice! \n";
+
+    int loc = 30;
 
     for(int i=0; i<num_frames; i++){
-        draw_turkey( i%10, (i+1)%10);
+        loc = loc + (rand()%3 - 1);
+        draw_turkey( loc, 1);
         pause(t);
     }    
 
@@ -77,8 +86,9 @@ void draw_x(int x_loc){
     return;
 }
 
+
 void pause(int t){
-    clock_t final_time = time(NULL) + t;
+    clock_t final_time = time(0) + t;
 
     while(time(NULL) < final_time);
 
